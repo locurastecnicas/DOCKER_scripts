@@ -1,7 +1,8 @@
 DOCKER
 ------
 
-Scripts para configuracion y arranque de servicios en imagenes.
+Scripts para configuracion y arranque de diferentes servicios.
 
--ldapstart.sh - Script para configurar un servicio OpenLDAP.
-
+ ldap_image\
+   -ldapstart.sh - Script para configurar un servicio OpenLDAP.
+   -slapd.conf - Fichero de configuracion basico OpenLDAP con variables para sustitucion.

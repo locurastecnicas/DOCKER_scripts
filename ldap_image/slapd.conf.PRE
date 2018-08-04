@@ -1,22 +1,9 @@
-#
-# See slapd.conf(5) for details on configuration options.
-# This file should NOT be world readable.
-#
+# Ficheros de schema por defecto.
 include		/ldap/etc/openldap/schema/core.schema
-
-# Define global ACLs to disable default read access.
-
-# Do not enable referrals until AFTER you have a working directory
-# service AND an understanding of referrals.
-#referral	ldap://root.openldap.org
+# Ficheros de schema adicionales.
 
 pidfile		/ldap/var/run/slapd.pid
 argsfile	/ldap/var/run/slapd.args
-
-# Load dynamic backend modules:
-# modulepath	/ldap/libexec/openldap
-# moduleload	back_mdb.la
-# moduleload	back_ldap.la
 
 # Sample security restrictions
 #	Require integrity protection (prevent hijacking)
@@ -45,18 +32,14 @@ argsfile	/ldap/var/run/slapd.args
 #
 # rootdn can always read and write EVERYTHING!
 
-#######################################################################
-# MDB database definitions
-#######################################################################
-
 database	mdb
 maxsize		1073741824
-suffix		"dc=my-domain,dc=com"
-rootdn		"cn=Manager,dc=my-domain,dc=com"
+suffix		"LDAPsuffix"
+rootdn		"LDAProotdn"
 # Cleartext passwords, especially for the rootdn, should
 # be avoid.  See slappasswd(8) and slapd.conf(5) for details.
 # Use of strong authentication encouraged.
-rootpw		secret
+rootpw		LDAProotpw
 # The database directory MUST exist prior to running slapd AND 
 # should only be accessible by the slapd and slap tools.
 # Mode 700 recommended.
