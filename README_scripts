@@ -1,0 +1,7 @@
+DOCKER
+------
+
+Scripts para configuracion y arranque de servicios en imagenes.
+
+-ldapstart.sh - Script para configurar un servicio OpenLDAP.
+
