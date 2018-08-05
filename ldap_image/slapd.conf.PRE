@@ -33,7 +33,7 @@ argsfile	/ldap/var/run/slapd.args
 # rootdn can always read and write EVERYTHING!
 
 database	mdb
-maxsize		1073741824
+maxsize		LDAPmaxsize
 suffix		"LDAPsuffix"
 rootdn		"LDAProotdn"
 # Cleartext passwords, especially for the rootdn, should
@@ -43,6 +43,6 @@ rootpw		LDAProotpw
 # The database directory MUST exist prior to running slapd AND 
 # should only be accessible by the slapd and slap tools.
 # Mode 700 recommended.
-directory	/ldap/var/openldap-data
+directory	LDAPdirectory	
 # Indices to maintain
 index	objectClass	eq
