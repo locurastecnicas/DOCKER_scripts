@@ -44,4 +44,4 @@ fi
              -e s/LDAPmaxsize/${LDAPmaxsize}/ \
              -e 's#LDAPdirectory#'${LDAPdirectory}'#' ./slapd.conf.PRE >> ./slapd.conf
 
-/bin/echo index\\t "${LDAPindex}" >> ./slapd.conf
+/bin/echo -e "index\t${LDAPindex}" >> ./slapd.conf
