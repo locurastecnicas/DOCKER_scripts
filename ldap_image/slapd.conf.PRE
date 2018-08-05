@@ -45,4 +45,3 @@ rootpw		LDAProotpw
 # Mode 700 recommended.
 directory	LDAPdirectory	
 # Indices to maintain
-index	objectClass	eq
