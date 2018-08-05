@@ -39,15 +39,15 @@ fi
 ## Comprobacion de variables requeridas.
 if [ -z "${LDAPsuffix}" ] || [ -z "${LDAProotdn}" ] || [ -z "${LDAProotpw}" ]
 then
-  /bin/echo "Error, falta una de las variables requeridas de configuracion."
-  /bin/echo "Las variables requeridas son: LDAPsuffix, LDAProotdn, LDAProotpw."
+  /usr/bin/echo "Error, falta una de las variables requeridas de configuracion."
+  /usr/bin/echo "Las variables requeridas son: LDAPsuffix, LDAProotdn, LDAProotpw."
   exit 1
 fi
 
 ## Creacion del fichero de configuracion con la especificacion de schema.
-/bin/echo "# Ficheros de schema." > ./slapd.conf
-/bin/echo -e "${LDAPschema}" >> ./slapd.conf
-/bin/echo ""  >> ./slapd.conf
+/usr/bin/echo "# Ficheros de schema." > ./slapd.conf
+/usr/bin/echo -e "${LDAPschema}" >> ./slapd.conf
+/usr/bin/echo ""  >> ./slapd.conf
 
 ## Sustitucion en el fichero slapd.conf.PRE de las variables inyectadas en el contendor.
 /usr/bin/sed -e s/LDAPsuffix/${LDAPsuffix}/ \
@@ -57,5 +57,5 @@ fi
              -e 's#LDAPdirectory#'${LDAPdirectory}'#' ./slapd.conf.PRE >> ./slapd.conf
 
 ## Finalizacion del archivo con la definicion de indices.
-/bin/echo -e "index\t${LDAPindex}" >> ./slapd.conf
+/usr/bin/echo -e "index\t${LDAPindex}" >> ./slapd.conf
 
