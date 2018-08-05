@@ -1,7 +1,4 @@
-# Ficheros de schema por defecto.
-include		/ldap/etc/openldap/schema/core.schema
-# Ficheros de schema adicionales.
-
+# Ruta a ficheros de control.
 pidfile		/ldap/var/run/slapd.pid
 argsfile	/ldap/var/run/slapd.args
 
@@ -32,6 +29,7 @@ argsfile	/ldap/var/run/slapd.args
 #
 # rootdn can always read and write EVERYTHING!
 
+## Definicion de arbol de directorio - LDAPsuffix
 database	mdb
 maxsize		LDAPmaxsize
 suffix		"LDAPsuffix"
