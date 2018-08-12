@@ -65,17 +65,17 @@ fi
 /usr/bin/echo "Aplicando cambios en fichero de configuracion." >> /proc/self/fd/1
 
 ## Creacion del fichero de configuracion con la especificacion de schema.
-/usr/bin/echo "# Ficheros de schema." > ./slapd.conf
-/usr/bin/echo -e "${LDAPschema}" >> ./slapd.conf
-/usr/bin/echo ""  >> ./slapd.conf
+/usr/bin/echo "# Ficheros de schema." > /ldap/scripts/slapd.conf
+/usr/bin/echo -e "${LDAPschema}" >> /ldap/scripts/slapd.conf
+/usr/bin/echo ""  >> /ldap/scripts/slapd.conf
 
 ## Sustitucion en el fichero slapd.conf.PRE de las variables inyectadas en el contendor.
 /usr/bin/sed -e s/LDAPsuffix/${LDAPsuffix}/ \
              -e s/LDAProotdn/${LDAProotdn}/ \
              -e s/LDAProotpw/${LDAProotpw}/ \
              -e s/LDAPmaxsize/${LDAPmaxsize}/ \
-             -e 's#LDAPdirectory#'${LDAPdirectory}'#' ./slapd.conf.PRE >> ./slapd.conf
+             -e 's#LDAPdirectory#'${LDAPdirectory}'#' /ldap/scripts/slapd.conf.PRE >> /ldap/scripts/slapd.conf
 
 ## Finalizacion del archivo con la definicion de indices.
-/usr/bin/echo -e "index\t${LDAPindex}" >> ./slapd.conf
+/usr/bin/echo -e "index\t${LDAPindex}" >> /ldap/scripts/slapd.conf
 
