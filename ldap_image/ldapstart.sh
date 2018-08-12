@@ -24,21 +24,21 @@ else
   LDAPschema=`/usr/bin/echo -e "include\t${LDAPschema}" | /usr/bin/sed 's/|/\ninclude\t/g'`
 fi
 ## Registro STDOUT LDAPschema.
-/usr/bin/echo "Variable LDAPschema - ${LDAPschema}" >> /proc/self/fd/1
+/usr/bin/echo -e "\tVariable LDAPschema - ${LDAPschema}" >> /proc/self/fd/1
 
 if [ -z "${LDAPmaxsize}" ]
 then
   LDAPmaxsize=1073741824
 fi
 ## Registro STDOUT LDAPmaxsize.
-/usr/bin/echo "Variable LDAPmaxsize - ${LDAPmaxsize}" >> /proc/self/fd/1
+/usr/bin/echo -e "\tVariable LDAPmaxsize - ${LDAPmaxsize}" >> /proc/self/fd/1
 
 if [ -z "${LDAPdirectory}" ]
 then
   LDAPdirectory="/ldap/var/openldap-data"
 fi
 ## Registro STDOUT LDAPdirectory.
-/usr/bin/echo "Variable LDAPdirectory - ${LDAPdirectory}" >> /proc/self/fd/1
+/usr/bin/echo -e "\tVariable LDAPdirectory - ${LDAPdirectory}" >> /proc/self/fd/1
 
 if [ -z "${LDAPindex}" ]
 then
@@ -47,7 +47,7 @@ else
   LDAPindex=`/usr/bin/echo ${LDAPindex} | /usr/bin/sed 's/|/\t/g' | /usr/bin/sed 's/:/\nindex\t/g'`
 fi
 ## Registro STDOUT LDAPindex.
-/usr/bin/echo "Variable LDAPindex - ${LDAPindex}" >> /proc/self/fd/1
+/usr/bin/echo -e "\tVariable LDAPindex - ${LDAPindex}" >> /proc/self/fd/1
 
 ## Comprobacion de variables requeridas.
 if [ -z "${LDAPsuffix}" ] || [ -z "${LDAProotdn}" ] || [ -z "${LDAProotpw}" ]
@@ -57,9 +57,12 @@ then
   exit 1
 fi
 ## Registro STDOUT variables requeridas.
-/usr/bin/echo "Variable LDAPsuffix - ${LDAPsuffix}" >> /proc/self/fd/1
-/usr/bin/echo "Variable LDAProotdn - ${LDAProotdn}" >> /proc/self/fd/1
-/usr/bin/echo "Variable LDAProotpw - ${LDAProotpw}" >> /proc/self/fd/1
+/usr/bin/echo -e "\tVariable LDAPsuffix - ${LDAPsuffix}" >> /proc/self/fd/1
+/usr/bin/echo -e "\tVariable LDAProotdn - ${LDAProotdn}" >> /proc/self/fd/1
+/usr/bin/echo -e "\tVariable LDAProotpw - ${LDAProotpw}" >> /proc/self/fd/1
+
+/usr/bin/echo "Comprobacion de variables de configuracion finalizadas." >> /proc/self/fd/1 
+/usr/bin/echo "Aplicando cambios en fichero de configuracion." >> /proc/self/fd/1
 
 ## Creacion del fichero de configuracion con la especificacion de schema.
 /usr/bin/echo "# Ficheros de schema." > ./slapd.conf
