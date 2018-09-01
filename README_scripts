@@ -3,6 +3,9 @@ DOCKER
 
 Scripts para configuracion y arranque de diferentes servicios.
 
+ imgbuilder - Script basico para crear el entorno de construccion necesario para una 
+	      imagen Docker. Copia todos los ficheros de un paquete y sus dependencias
+	      directas. Primera version para RPMs.
  ldap_image\
    -ldapstart.sh - Script para configurar un servicio OpenLDAP.
-   -slapd.conf - Fichero de configuracion basico OpenLDAP con variables para sustitucion.
+   -slapd.conf.PRE - Fichero de configuracion basico OpenLDAP con variables para sustitucion.

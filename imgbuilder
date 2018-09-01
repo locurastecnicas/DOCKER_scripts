@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+
+then
+  /bin/echo "Error, es necesario especificar el nombre del paquete a pasar a la imagen."
+  exit 0
+fi
+
+software=$1
+
+if [ -z "$2" ]
+then
+  /bin/echo "Error, es necesario especificar el destino para construir la imagen."
+  exit 0
+fi
+
+destino=$2
+
+## Primero el software a introducir en la imagen.
+rpm -ql ${software} | egrep -v "doc|man" | cpio -pvdum ${destino}/
+
+## Segundo todas las dependencias del software principal.
+for paquete in `yum deplist ${software} | grep provider | sort | uniq | awk '{print $2}'`
+do
+  rpm -ql ${paquete} | egrep -v "doc|man" | cpio -pvdum ${destino}/
+done
