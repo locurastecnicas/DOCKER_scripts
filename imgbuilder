@@ -18,10 +18,22 @@ fi
 destino=$2
 
 ## Primero el software a introducir en la imagen.
+isinstalled=`rpm -ql ${software}`
+if [ "${isinstalled}" == "package ${software} is not installed" ]
+then
+   yum -y install ${software}
+fi
 rpm -ql ${software} | egrep -v "doc|man" | cpio -pvdum ${destino}/
 
 ## Segundo todas las dependencias del software principal.
 for paquete in `yum deplist ${software} | grep provider | sort | uniq | awk '{print $2}'`
 do
+  isinstalled=`rpm -ql ${paquete}`
+  if [ "${isinstalled}" == "package ${paquete} is not installed" ]
+  then
+     echo "${paquete} is not installed."
+     yum -y install ${paquete}
+     sleep 10
+  fi
   rpm -ql ${paquete} | egrep -v "doc|man" | cpio -pvdum ${destino}/
 done
